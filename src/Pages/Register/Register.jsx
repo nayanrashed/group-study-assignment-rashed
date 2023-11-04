@@ -1,13 +1,15 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProviders";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const Register = () => {
   const { user, createUser } = useContext(AuthContext);
-  
-  const navigate = useNavigate();
+  const [error, setError] = useState("");
+  const [registrationError, setRegistrationError] = useState("");
+  //   const navigate = useNavigate();
 
+  console.log(user);
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -17,27 +19,39 @@ const Register = () => {
     const password = form.password.value;
     const photo = form.photo.value;
     console.log(name, email, password, photo);
-    createUser(email, password)
-      .then((result) => {
-        console.log(result);
-        // e.target.reset();
-        // navigate("/");
-        Swal.fire({
-          title: "Success",
-          text: "Registration Completed",
-          icon: "success",
-          confirmButtonText: "Close",
+
+    setRegistrationError("");
+    setError("");
+
+    if (!/^(?=.*?[A-Z])(?=.*?[#?!@$%^&*-]).{6,}$/.test(password)) {
+      setError(
+        "Your password should have at least 6 characters with at least one capital letter and one special character"
+      );
+    } else {
+      setError("");
+      createUser(email, password)
+        .then((result) => {
+          console.log(result);
+          e.target.reset();
+            navigate("/");
+          Swal.fire({
+            title: "Success",
+            text: "Registration Completed",
+            icon: "success",
+            confirmButtonText: "Close",
+          });
+        })
+        .then((error) => {
+        //   console.error(error);
+          setRegistrationError(error?.message);
+          Swal.fire({
+            title: "Error!",
+            text: "Wrong Email of Password",
+            icon: "error",
+            confirmButtonText: "Close",
+          });
         });
-      })
-      .then((error) => {
-        console.error(error);
-        Swal.fire({
-          title: "Error!",
-          text: "Wrong Email of Password",
-          icon: "error",
-          confirmButtonText: "Close",
-        });
-      })
+    }
   };
   return (
     <div>
@@ -96,8 +110,9 @@ const Register = () => {
                     className="input input-bordered"
                   />
                 </div>
+                {error && <p className="text-red-400">{error}</p>}
                 <div className="form-control mt-6">
-                  <button className="btn btn-primary">Sign Up</button>
+                  <button className="btn btn-primary">Register</button>
                 </div>
               </form>
             </div>
