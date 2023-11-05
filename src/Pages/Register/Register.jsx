@@ -17,8 +17,12 @@ const Register = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    const photo = form.photo.value;
-    console.log(name, email, password, photo);
+    const photoURL = form.photo.value;
+    // console.log(name, email, password, photo);
+
+    //new user
+    const createdUser = { name, email, photoURL };
+    console.log(createdUser);
 
     setRegistrationError("");
     setError("");
@@ -31,7 +35,8 @@ const Register = () => {
       setError("");
       createUser(email, password)
         .then((result) => {
-          console.log(result);
+          console.log(result.user);
+
           e.target.reset();
           navigate("/");
           Swal.fire({
@@ -116,8 +121,11 @@ const Register = () => {
                 </div>
               </form>
               <p className="text-center mb-4">
-                Already Have an Account? 
-                <Link className="text-orange-500 font-semibold" to='/login'> Login</Link>
+                Already Have an Account?
+                <Link className="text-orange-500 font-semibold" to="/login">
+                  {" "}
+                  Login
+                </Link>
               </p>
             </div>
           </div>
