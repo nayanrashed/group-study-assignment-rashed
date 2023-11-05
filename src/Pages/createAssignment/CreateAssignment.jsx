@@ -1,14 +1,25 @@
+import { useContext, useState } from "react";
+import { AuthContext } from "../../providers/AuthProviders";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
+
 const CreateAssignment = () => {
+    const { user} = useContext(AuthContext);
+    const [startDate, setStartDate]=useState(new Date())
+    // console.log(user.email);
   const handleCreateAssignment = (e) => {
     e.preventDefault();
     const form = e.target;
     const title = form.title.value;
     const marks = form.marks.value;
     const level = form.level.value;
-    const date = form.date.value;
+    // const date = form.date.value;
+    const date = startDate;
     const imageURL = form.image.value;
     const description = form.description.value;
-    const newAssignment = {title,marks,level,date,imageURL,description}
+    const creatorEmail = user.email;
+    const newAssignment = {title,marks,level,date,imageURL,description, creatorEmail}
     console.log(newAssignment);
     fetch('http://localhost:5000/assignments',{
         method:'POST',
@@ -20,6 +31,7 @@ const CreateAssignment = () => {
     .then(res=>res.json())
     .then(data=>{
         console.log(data)
+        // e.target.reset();
     })
   };
   return (
@@ -73,12 +85,13 @@ const CreateAssignment = () => {
                   <label className="label">
                     <span className="label-text">Due Date</span>
                   </label>
-                  <input
+                  <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+                  {/* <input
                     type="date"
                     name="date"                    
                     className="input input-bordered"
                     required
-                  />
+                  /> */}
                 </div>                
               </div>              
               <div className="form-control">
