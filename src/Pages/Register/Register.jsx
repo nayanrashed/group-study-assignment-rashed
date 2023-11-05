@@ -1,13 +1,13 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProviders";
-// import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const Register = () => {
   const { user, createUser } = useContext(AuthContext);
   const [error, setError] = useState("");
   const [registrationError, setRegistrationError] = useState("");
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   console.log(user);
 
@@ -33,7 +33,7 @@ const Register = () => {
         .then((result) => {
           console.log(result);
           e.target.reset();
-            navigate("/");
+          navigate("/");
           Swal.fire({
             title: "Success",
             text: "Registration Completed",
@@ -41,9 +41,9 @@ const Register = () => {
             confirmButtonText: "Close",
           });
         })
-        .then((error) => {
-        //   console.error(error);
-          setRegistrationError(error?.message);
+        .catch((error) => {
+          console.error(error);
+          setRegistrationError(error.message);
           Swal.fire({
             title: "Error!",
             text: "Wrong Email of Password",
@@ -115,6 +115,10 @@ const Register = () => {
                   <button className="btn btn-primary">Register</button>
                 </div>
               </form>
+              <p className="text-center mb-4">
+                Already Have an Account? 
+                <Link className="text-orange-500 font-semibold" to='/login'> Login</Link>
+              </p>
             </div>
           </div>
         </div>
