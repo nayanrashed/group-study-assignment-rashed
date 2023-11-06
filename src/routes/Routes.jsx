@@ -39,6 +39,7 @@ const router = createBrowserRouter([
       {
         path: "/assignments/:id",
         element:<AssignmentDetails></AssignmentDetails>,
+        loader:({params})=>fetch(`http://localhost:5000/assignments/${params.id}`)
       },
       {
         path: "/updateAssignment/:id",
