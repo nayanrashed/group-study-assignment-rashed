@@ -22,6 +22,12 @@ const NavBar = () => {
         <NavLink to="/allAssignments">All Assignments</NavLink>
       </li>
       <li>
+        <NavLink to="/submittedAssignments">Submitted Assignments</NavLink>
+      </li>
+      <li>
+        <NavLink to="/checkedAssignments">Checked Assignments</NavLink>
+      </li>
+      <li>
         <NavLink to="/register">Register</NavLink>
       </li>
     </>
@@ -55,7 +61,7 @@ const NavBar = () => {
         </div>
         <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
       </div>
-      <div className="navbar-center hidden lg:flex">
+      <div className="navbar-center hidden md:flex">
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
       <div className="navbar-end">

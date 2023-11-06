@@ -22,8 +22,9 @@ const AssignmentDetails = () => {
   //     console.log("Take Assignment Button Clicked");
   //   };
 
-  const submitterEmail = user.email;
+  const submitterEmail = user?.email;
   const assignmentId = _id;
+  const status = "pending";
 
   const handleSubmitAssignment = (e) => {
     e.preventDefault();
@@ -39,6 +40,7 @@ const AssignmentDetails = () => {
       submitDetails,
       submitterEmail,
       creatorEmail,
+      status
     };
     console.log(submittedAssignment);
     fetch("http://localhost:5000/submittedAssignments", {
@@ -90,7 +92,7 @@ const AssignmentDetails = () => {
               className="btn"
               onClick={() => document.getElementById("my_modal_5").showModal()}
             >
-              open modal
+              Take Assignment
             </button>
             <dialog
               id="my_modal_5"
@@ -119,10 +121,11 @@ const AssignmentDetails = () => {
                     name="submitDetails"
                   ></textarea>
                 </div>
+                <p>Pres ESC to cancel</p>
                 <div className="modal-action">
                   <div method="dialog w-full">
                     {/* if there is a button in form, it will close the modal */}
-                    <button className="btn">Take Assignment</button>
+                    <button className="btn">Submit</button>
                   </div>
                 </div>
               </form>

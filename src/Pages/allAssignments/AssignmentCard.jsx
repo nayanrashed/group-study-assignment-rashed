@@ -2,8 +2,9 @@ import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 import Swal from "sweetalert2";
-import { reload } from "firebase/auth";
 
+
+// eslint-disable-next-line react/prop-types
 const AssignmentCard = ({ assignment, handleDelete }) => {
   const { user } = useContext(AuthContext);
 
