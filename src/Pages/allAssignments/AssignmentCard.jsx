@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 import Swal from "sweetalert2";
 import { reload } from "firebase/auth";
 
-const AssignmentCard = ({ assignment,handleDelete }) => {
+const AssignmentCard = ({ assignment, handleDelete }) => {
   const { user } = useContext(AuthContext);
 
   const {
@@ -18,41 +18,29 @@ const AssignmentCard = ({ assignment,handleDelete }) => {
     creatorEmail,
   } = assignment;
 
-//   const handleDelete = (_id) => {
-//     if (user) {
-//       if (user?.email !== creatorEmail) {
-//         console.log("you are not authorized");
-//       } else {
-//         // console.log('Delete:',_id);
-//         Swal.fire({
-//           title: "Are you sure?",
-//           text: "You won't be able to revert this!",
-//           icon: "warning",
-//           showCancelButton: true,
-//           confirmButtonColor: "#3085d6",
-//           cancelButtonColor: "#d33",
-//           confirmButtonText: "Yes, delete it!",
-//         }).then((result) => {
-//           if (result.isConfirmed) {
-//             fetch(`http://localhost:5000/assignments/${_id}`, {
-//               method: "DELETE",
-//             })
-//               .then((res) => res.json())
-//               .then((data) => {
-//                 console.log("deleted successfully");
-//                 Swal.fire({
-//                   title: "Deleted!",
-//                   text: "Your file has been deleted.",
-//                   icon: "success",
-//                 });
-//               });
-//           }
-//         });
-//       }
-//     } else {
-//       console.log("Please Login First");
-//     }
-//   };
+  const navigate = useNavigate();
+
+  const handleUpdate = () => {
+    if (user?.email) {
+      if (creatorEmail !== user?.email) {
+        Swal.fire({
+            title: "Opps!",
+            text: "You are requesting for unauthorized access",
+            icon: "error",
+          });
+        navigate("/allAssignments");
+      } else {
+        navigate(`/updateAssignment/${_id}`);
+      }
+    } else {
+      console.log("plz login first");
+      Swal.fire({
+        title: "Opps!",
+        text: "Please Login First.",
+        icon: "error",
+      });
+    }
+  };
 
   return (
     <div className="">
@@ -76,14 +64,18 @@ const AssignmentCard = ({ assignment,handleDelete }) => {
             <Link to={`/assignments/${_id}`} className="btn btn-primary btn-sm">
               View
             </Link>
-            <Link
-              to={`/updateAssignment/${_id}`}
+            <button onClick={handleUpdate} className="btn btn-primary btn-sm">
+              Update
+            </button>
+            {/* <Link
+              onClick={() => handleUpdate(_id, creatorEmail)}
               className="btn btn-primary btn-sm"
             >
               Update
-            </Link>
+            </Link> */}
+
             <Link
-              onClick={() => handleDelete(_id,creatorEmail)}
+              onClick={() => handleDelete(_id, creatorEmail)}
               className="btn btn-primary btn-sm"
             >
               Delete

@@ -13,6 +13,11 @@ const allAssignments = () => {
   const handleDelete = (_id, creatorEmail) => {
     if (user) {
       if (user?.email !== creatorEmail) {
+        Swal.fire({
+            title: "Opps!",
+            text: "You are not authorized to DELETE.",
+            icon: "error",
+          });
         console.log("you are not authorized");
       } else {
         console.log("Delete:", _id);
@@ -46,7 +51,11 @@ const allAssignments = () => {
         });
       }
     } else {
-      console.log("Please Login First");
+        Swal.fire({
+            title: "Opps!",
+            text: "Please Login First.",
+            icon: "error",
+          });
     }
   };
   return (
