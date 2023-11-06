@@ -9,7 +9,9 @@ import CreateAssignment from "../Pages/createAssignment/createAssignment";
 import AssignmentDetails from "../Pages/AssignmentDetails/AssignmentDetails";
 import UpdateAssignment from "../Pages/UpdateAssignment/UpdateAssignment";
 import SubmittedAssignments from "../Pages/SubmittedAssignments/SubmittedAssignments";
-import CheckedAssignments from "../Pages/CheckedAssignments/CheckedAssignments";
+import MyAssignments from "../Pages/MyAssignment/MyAssignments";
+import GiveMark from "../Pages/GiveMark/GiveMark";
+
 
 
 const router = createBrowserRouter([
@@ -53,8 +55,13 @@ const router = createBrowserRouter([
         element:<SubmittedAssignments></SubmittedAssignments>
       },
       {
-        path:"/checkedAssignments",
-        element:<CheckedAssignments></CheckedAssignments>,
+        path:"/myAssignments",
+        element:<MyAssignments></MyAssignments>,
+      },
+      {
+        path:"/giveMarks/:id",
+        element:<GiveMark></GiveMark>,
+        loader:({params})=>fetch(`http://localhost:5000/submittedAssignments/${params.id}`)
       }
     ],
   },

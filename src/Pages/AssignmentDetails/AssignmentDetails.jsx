@@ -18,10 +18,7 @@ const AssignmentDetails = () => {
     creatorEmail,
     category,
   } = assignment;
-  //   const handleTakeAssignment = () => {
-  //     console.log("Take Assignment Button Clicked");
-  //   };
-
+ 
   const submitterEmail = user?.email;
   const assignmentId = _id;
   const status = "pending";
@@ -84,10 +81,8 @@ const AssignmentDetails = () => {
           </div>
           <p>Details: {description}</p>
           <div className="card-actions justify-end">
-            {/* <button onClick={handleTakeAssignment} className="btn btn-primary">
-              Take Assignment
-            </button> */}
-            {/* Open the modal using document.getElementById('ID').showModal() method */}
+            
+            {/* -----Modal----- */}
             <button
               className="btn"
               onClick={() => document.getElementById("my_modal_5").showModal()}

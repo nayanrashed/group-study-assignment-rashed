@@ -25,7 +25,7 @@ const NavBar = () => {
         <NavLink to="/submittedAssignments">Submitted Assignments</NavLink>
       </li>
       <li>
-        <NavLink to="/checkedAssignments">Checked Assignments</NavLink>
+        <NavLink to="/myAssignments">My Assignments</NavLink>
       </li>
       <li>
         <NavLink to="/register">Register</NavLink>
