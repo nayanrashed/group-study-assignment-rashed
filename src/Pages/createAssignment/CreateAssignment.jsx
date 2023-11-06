@@ -3,36 +3,54 @@ import { AuthContext } from "../../providers/AuthProviders";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
+import Swal from "sweetalert2";
 
 const CreateAssignment = () => {
-    const { user} = useContext(AuthContext);
-    const [startDate, setStartDate]=useState(new Date())
-    // console.log(user.email);
+  const { user } = useContext(AuthContext);
+  const [startDate, setStartDate] = useState(new Date());
+  // console.log(user.email);
   const handleCreateAssignment = (e) => {
     e.preventDefault();
     const form = e.target;
     const title = form.title.value;
     const marks = form.marks.value;
     const level = form.level.value;
-    // const date = form.date.value;
+    const category = form.category.value;
     const date = startDate;
     const imageURL = form.image.value;
     const description = form.description.value;
     const creatorEmail = user.email;
-    const newAssignment = {title,marks,level,date,imageURL,description, creatorEmail}
+    const newAssignment = {
+      title,
+      marks,
+      level,
+      category,
+      date,
+      imageURL,
+      description,
+      creatorEmail,
+    };
     console.log(newAssignment);
-    fetch('http://localhost:5000/assignments',{
-        method:'POST',
-        headers:{
-            'content-type':'application/json'
-        },
-        body: JSON.stringify(newAssignment)
+    fetch("http://localhost:5000/assignments", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newAssignment),
     })
-    .then(res=>res.json())
-    .then(data=>{
-        console.log(data)
-        // e.target.reset();
-    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        e.target.reset();
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Success",
+            text: "Assignment Added Successfully",
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
+        }
+      });
   };
   return (
     <div>
@@ -78,22 +96,39 @@ const CreateAssignment = () => {
                   <select className="border rounded-lg p-3" name="level">
                     <option value="easy">Easy</option>
                     <option value="medium">Medium</option>
-                    <option value="hard">Hard</option>                   
+                    <option value="hard">Hard</option>
                   </select>
                 </div>
+              </div>
+              <div className="flex gap-6">
                 <div className="form-control flex-1">
                   <label className="label">
                     <span className="label-text">Due Date</span>
                   </label>
-                  <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+                  <DatePicker className="border p-3 rounded-lg w-full"
+                    selected={startDate}
+                    onChange={(date) => setStartDate(date)}
+                  />
                   {/* <input
                     type="date"
                     name="date"                    
                     className="input input-bordered"
                     required
                   /> */}
-                </div>                
-              </div>              
+                </div>
+                <div className="form-control flex-1">
+                  <label className="label">
+                    <span className="label-text">Category</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="category"
+                    placeholder="Category Name"
+                    className="input input-bordered"
+                    required
+                  />
+                </div>
+              </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Image URL</span>
@@ -110,12 +145,12 @@ const CreateAssignment = () => {
                   <span className="label-text">Description</span>
                 </label>
                 <textarea
-                className="textarea textarea-bordered"
-                placeholder="Detail Description" name="description"
-              ></textarea>
-
+                  className="textarea textarea-bordered"
+                  placeholder="Detail Description"
+                  name="description"
+                ></textarea>
               </div>
-              
+
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Create Assignment</button>
               </div>
