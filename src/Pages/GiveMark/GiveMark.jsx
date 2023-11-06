@@ -1,11 +1,14 @@
 import { useContext } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
+import Swal from "sweetalert2";
 
 const GiveMark = () => {
   const { user } = useContext(AuthContext);
   const pendingAssignment = useLoaderData();
+  const navigate = useNavigate();
   const {
+    _id,
     title,
     assignmentId,
     pdfLink,
@@ -14,15 +17,39 @@ const GiveMark = () => {
     submitDetails,
     submitterEmail,
     creatorEmail,
-    status,
+    
   } = pendingAssignment;
+
+  const examinerEmail= user?.email;
+  const status = "completed";
 
   const handleGiveMark = (e) => {
     e.preventDefault();
     const form = e.target;
     const givenMarks = form.givenMarks.value;
     const feedback = form.feedback.value;
-    console.log(givenMarks,feedback);    
+    // console.log(givenMarks,feedback, examinerEmail); 
+    const updatedSubmittedAssignment = {givenMarks,feedback,examinerEmail,status} 
+    fetch(`http://localhost:5000/submittedAssignments/${_id}`,{
+        method:"PUT",
+        headers:{
+            "content-type":"application/json",
+        },
+        body: JSON.stringify(updatedSubmittedAssignment),
+    })
+    .then(res=>res.json())
+    .then(data=>{
+        console.log(data)
+        if(data.modifiedCount>0){
+            Swal.fire({
+                title: "Success",
+                text: "Marks Given Successfully",
+                icon: "success",
+                confirmButtonText: "Ok",
+              });
+        }
+    })
+
   };
   return (
     <div className="border w-1/2 mx-auto">
