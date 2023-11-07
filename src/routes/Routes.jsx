@@ -12,8 +12,6 @@ import SubmittedAssignments from "../Pages/SubmittedAssignments/SubmittedAssignm
 import MyAssignments from "../Pages/MyAssignment/MyAssignments";
 import GiveMark from "../Pages/GiveMark/GiveMark";
 
-
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,44 +23,51 @@ const router = createBrowserRouter([
       },
       {
         path: "/createAssignment",
-        element: <PrivateRoute><CreateAssignment></CreateAssignment></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <CreateAssignment></CreateAssignment>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/allAssignments",
         element: <AllAssignments></AllAssignments>,
-        loader:()=>fetch('http://localhost:5000/assignments')
+        loader: () => fetch("http://localhost:5000/assignments"),
       },
       {
         path: "/login",
-        element: <Login></Login>
+        element: <Login></Login>,
       },
       {
         path: "/register",
-        element: <Register></Register>
+        element: <Register></Register>,
       },
       {
         path: "/assignments/:id",
-        element:<AssignmentDetails></AssignmentDetails>,
-        loader:({params})=>fetch(`http://localhost:5000/assignments/${params.id}`)
+        element: <AssignmentDetails></AssignmentDetails>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/assignments/${params.id}`),
       },
       {
         path: "/updateAssignment/:id",
-        element:<UpdateAssignment></UpdateAssignment>,
-        loader:({params})=>fetch(`http://localhost:5000/assignments/${params.id}`)
+        element: <UpdateAssignment></UpdateAssignment>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/assignments/${params.id}`),
       },
       {
-        path:"/submittedAssignments",
-        element:<SubmittedAssignments></SubmittedAssignments>
+        path: "/submittedAssignments",
+        element: <SubmittedAssignments></SubmittedAssignments>,
       },
       {
-        path:"/myAssignments",
-        element:<MyAssignments></MyAssignments>,
+        path: "/myAssignments",
+        element: <MyAssignments></MyAssignments>,
       },
       {
-        path:"/giveMarks/:id",
-        element:<GiveMark></GiveMark>,
-        loader:({params})=>fetch(`http://localhost:5000/submittedAssignments/${params.id}`)
-      }
+        path: "/giveMarks/:id",
+        element: <GiveMark></GiveMark>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/submittedAssignments/${params.id}`),
+      },
     ],
   },
 ]);

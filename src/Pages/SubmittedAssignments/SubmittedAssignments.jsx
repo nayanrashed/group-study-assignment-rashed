@@ -19,8 +19,8 @@ const SubmittedAssignments = () => {
   
   return (
     <div>
-      <h2 className="text-3xl">
-        Submitted Assignments:{pendingAssignments.length}
+      <h2 className="text-3xl text-center p-6">
+        Pending Assignments:{pendingAssignments.length}
       </h2>
       <div className="md:grid md:grid-cols-2 gap-6">
         {pendingAssignments.map((assignment) => (
