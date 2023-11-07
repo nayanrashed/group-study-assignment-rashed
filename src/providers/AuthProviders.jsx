@@ -9,11 +9,12 @@ import {
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
 import { createContext, useEffect, useState } from "react";
+import axios from "axios";
 
 const auth = getAuth(app);
 
 export const AuthContext = createContext(null);
-const googleProvider = new GoogleAuthProvider;
+const googleProvider = new GoogleAuthProvider();
 
 // eslint-disable-next-line react/prop-types
 const AuthProviders = ({ children }) => {
@@ -25,25 +26,39 @@ const AuthProviders = ({ children }) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  const signIn = (email,password)=>{
+  const signIn = (email, password) => {
     setLoading(true);
-    return signInWithEmailAndPassword(auth,email,password);
+    return signInWithEmailAndPassword(auth, email, password);
   };
 
-  const signInWithGoogle=()=>{
+  const signInWithGoogle = () => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
-  }
+  };
 
-  const logOut=()=>{
+  const logOut = () => {
     setLoading(true);
     return signOut(auth);
-  }
+  };
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+      
+      const userEmail = currentUser?.email || user?.email;
+      const loggedUser = { email: userEmail };
       setUser(currentUser);
       setLoading(false);
+      if (currentUser) {
+        
+        axios.post('http://localhost:5000/jwt',loggedUser, { withCredentials: true }).then((res) => {
+          console.log('Token Response:',res.data);
+        });
+      }else{
+        axios.post('http://localhost:5000/logout',loggedUser,{withCredentials:true})
+        .then(res=>{
+          console.log(res.data);
+        })
+      }
     });
     return () => {
       unSubscribe();

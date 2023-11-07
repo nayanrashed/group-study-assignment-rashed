@@ -10,6 +10,7 @@ const allAssignments = () => {
 
   const [assignments, setAssignments] = useState(allAssignments);
 
+  
   const handleDelete = (_id, creatorEmail) => {
     if (user) {
       if (user?.email !== creatorEmail) {
@@ -66,21 +67,21 @@ const allAssignments = () => {
     const level = form.level.value;
     console.log(level);
     if(level==="all"){
-      console.log(level);
+      // console.log(level);
       setAssignments(allAssignments);
     }
     else if(level==="easy"){
-      console.log(level);
+      // console.log(level);
       const easyAssignments = allAssignments.filter(assignment=>assignment.level===level)
       setAssignments(easyAssignments)
     }
     else if(level==="medium"){
-      console.log(level);
+      // console.log(level);
       const mediumAssignments = allAssignments.filter(assignment=>assignment.level===level)
       setAssignments(mediumAssignments)
     }
     else if (level==="hard"){
-      console.log(level);
+      // console.log(level);
       const hardAssignments = allAssignments.filter(assignment=>assignment.level===level)
       setAssignments(hardAssignments)
     }
