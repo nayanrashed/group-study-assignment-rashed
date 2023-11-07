@@ -26,8 +26,7 @@ const SubmittedAssignments = () => {
         {pendingAssignments.map((assignment) => (
           <SubmittedAssignmentCard
             key={assignment._id}
-            assignment={assignment}
-            
+            assignment={assignment}            
           ></SubmittedAssignmentCard>
         ))}
       </div>

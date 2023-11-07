@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const SubmittedAssignmentCard = ({ assignment }) => {
   const { user } = useContext(AuthContext);
-  const examinerEmail = user?.email;
+ 
   const {
     _id,
     title,
