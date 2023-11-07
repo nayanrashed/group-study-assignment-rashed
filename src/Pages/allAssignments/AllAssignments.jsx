@@ -14,10 +14,10 @@ const allAssignments = () => {
     if (user) {
       if (user?.email !== creatorEmail) {
         Swal.fire({
-            title: "Opps!",
-            text: "You are not authorized to DELETE.",
-            icon: "error",
-          });
+          title: "Opps!",
+          text: "You are not authorized to DELETE.",
+          icon: "error",
+        });
         console.log("you are not authorized");
       } else {
         console.log("Delete:", _id);
@@ -43,7 +43,9 @@ const allAssignments = () => {
                     text: "Your file has been deleted.",
                     icon: "success",
                   });
-                  const remainingAssignment = assignments.filter(assignment=>assignment._id !==_id)
+                  const remainingAssignment = assignments.filter(
+                    (assignment) => assignment._id !== _id
+                  );
                   setAssignments(remainingAssignment);
                 }
               });
@@ -51,18 +53,59 @@ const allAssignments = () => {
         });
       }
     } else {
-        Swal.fire({
-            title: "Opps!",
-            text: "Please Login First.",
-            icon: "error",
-          });
+      Swal.fire({
+        title: "Opps!",
+        text: "Please Login First.",
+        icon: "error",
+      });
     }
   };
+  const handleFilter=e=>{
+    e.preventDefault();
+    const form =e.target;
+    const level = form.level.value;
+    console.log(level);
+    if(level==="all"){
+      console.log(level);
+      setAssignments(allAssignments);
+    }
+    else if(level==="easy"){
+      console.log(level);
+      const easyAssignments = allAssignments.filter(assignment=>assignment.level===level)
+      setAssignments(easyAssignments)
+    }
+    else if(level==="medium"){
+      console.log(level);
+      const mediumAssignments = allAssignments.filter(assignment=>assignment.level===level)
+      setAssignments(mediumAssignments)
+    }
+    else if (level==="hard"){
+      console.log(level);
+      const hardAssignments = allAssignments.filter(assignment=>assignment.level===level)
+      setAssignments(hardAssignments)
+    }
+  }
   return (
     <div>
-      <h2 className="text-3xl text-center">
-        All Assignment: {assignments.length}
-      </h2>
+      <div className="flex justify-between">
+        <form onSubmit={handleFilter}>
+          <div className=" flex">
+            <label className="label">
+              <span className="label-text px-4">
+                Filter by Difficulty Level
+              </span>
+            </label>
+            <select className="border rounded-lg" name="level">
+              <option value="all">All</option>
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+            <button className="btn btn-sm ml-4">Submit</button>
+          </div>
+        </form>
+        <h2 className="text-xl pr-4">All Assignment: {assignments.length}</h2>
+      </div>
       <div>
         {assignments.map((assignment) => (
           <AssignmentCard

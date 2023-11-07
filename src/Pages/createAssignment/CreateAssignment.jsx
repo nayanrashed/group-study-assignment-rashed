@@ -109,12 +109,7 @@ const CreateAssignment = () => {
                     selected={startDate}
                     onChange={(date) => setStartDate(date)}
                   />
-                  {/* <input
-                    type="date"
-                    name="date"                    
-                    className="input input-bordered"
-                    required
-                  /> */}
+                  
                 </div>
                 <div className="form-control flex-1">
                   <label className="label">
