@@ -48,8 +48,7 @@ const AuthProviders = ({ children }) => {
       const loggedUser = { email: userEmail };
       setUser(currentUser);
       setLoading(false);
-      if (currentUser) {
-        
+      if (currentUser) {        
         axios.post('http://localhost:5000/jwt',loggedUser, { withCredentials: true }).then((res) => {
           console.log('Token Response:',res.data);
         });
@@ -63,13 +62,12 @@ const AuthProviders = ({ children }) => {
     return () => {
       unSubscribe();
     };
-  }, []);
+  }, [user?.email]);
 
   const authInfo = {
     user,
     createUser,
     loading,
-    setLoading,
     signIn,
     signInWithGoogle,
     logOut,

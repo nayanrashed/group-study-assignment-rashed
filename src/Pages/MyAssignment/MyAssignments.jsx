@@ -6,12 +6,12 @@ const MyAssignments = () => {
   const { user } = useContext(AuthContext);
 
   const [myAssignments, setMyAssignments] = useState([]);
-  //   const url = `http://localhost:5000/submittedAssignments?submitterEmail=${user?.email}`;
+ 
   useEffect(() => {
     fetch("http://localhost:5000/submittedAssignments")
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
+        console.log(data);
         const selected = data?.filter(
           (myAssignment) => myAssignment?.submitterEmail === user?.email
         );

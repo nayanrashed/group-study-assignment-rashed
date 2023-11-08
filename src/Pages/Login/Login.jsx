@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 import Swal from "sweetalert2";
 
+
 const Login = () => {
   const { signIn, signInWithGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -46,6 +47,7 @@ const Login = () => {
     signInWithGoogle() 
     .then(result=>{
         navigate(location?.state ? location.state : "/");
+        window.location.reload();
         console.log(result.user);
     })   
     .catch(error=>{

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
-import avatar from '../../assets/avatar.jpg'
+import avatar from "../../assets/avatar.jpg";
 
 const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -15,21 +15,29 @@ const NavBar = () => {
       <li>
         <NavLink to="/">Home</NavLink>
       </li>
-      <li>
-        <NavLink to="/createAssignment">Create Assignment</NavLink>
-      </li>
+      {user && (
+        <li>
+          <NavLink to="/createAssignment">Create Assignment</NavLink>
+        </li>
+      )}
       <li>
         <NavLink to="/allAssignments">All Assignments</NavLink>
       </li>
-      <li>
-        <NavLink to="/submittedAssignments">Submitted Assignments</NavLink>
-      </li>
-      <li>
-        <NavLink to="/myAssignments">My Assignments</NavLink>
-      </li>
-      <li>
-        <NavLink to="/register">Register</NavLink>
-      </li>
+      {user && (
+        <li>
+          <NavLink to="/submittedAssignments">Submitted Assignments</NavLink>
+        </li>
+      )}
+      {user && (
+        <li>
+          <NavLink to="/myAssignments">My Assignments</NavLink>
+        </li>
+      )}
+      {!user && (
+        <li>
+          <NavLink to="/register">Register</NavLink>
+        </li>
+      )}
     </>
   );
   return (
@@ -54,31 +62,45 @@ const NavBar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-sm dropdown-content mt-3 z-[1] shadow bg-base-100 rounded-box w-52"
           >
             {navLinks}
           </ul>
         </div>
         <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
       </div>
-      <div className="navbar-center hidden md:flex">
-        <ul className="menu menu-horizontal px-1">{navLinks}</ul>
+      <div className="navbar-center hidden lg:flex">
+        <ul className="menu menu-horizontal">{navLinks}</ul>
       </div>
       <div className="navbar-end">
-        {
-          user?.photoURL ?( <img className="rounded-full w-6 md:w-8" src={user?.photoURL} alt="Profile Pic"></img>):( user && ( <img className="rounded-full w-6 md:w-8" src={avatar} alt="Profile Pic"></img>))
-        }
-        {user && (
-          <p className="hidden md:inline md:text-lg px-1"> {user?.email}</p>
+        {user?.photoURL ? (
+          <div className="tooltip tooltip-bottom" data-tip="hello">
+            <img
+              className="rounded-full w-6 md:w-8 "
+              src={user?.photoURL}
+              alt="Profile Pic"
+            ></img>
+          </div>
+        ) : (
+          user && (
+            <div className="tooltip tooltip-bottom" data-tip={user.email}>
+              <img
+                className="rounded-full w-6 md:w-8 "
+                src={avatar}
+                alt="Profile Pic"
+              ></img>
+            </div>
+          )
         )}
+        {/* {user && (
+          <p className="hidden md:inline md:text-lg px-1"> {user?.email}</p>
+        )} */}
         {user ? (
           <button className="btn btn-sm" onClick={handleSignOut}>
             Sign Out
           </button>
         ) : (
-          <Link to="/login">
-            Login
-          </Link>
+          <Link to="/login">Login</Link>
         )}
       </div>
     </div>

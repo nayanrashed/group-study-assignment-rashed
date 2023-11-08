@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 
 const AssignmentDetails = () => {
   const assignment = useLoaderData();
-  const { user } = useContext(AuthContext);
+  const { user} = useContext(AuthContext);
   const navigate = useNavigate();
   const {
     _id,
@@ -43,6 +43,7 @@ const AssignmentDetails = () => {
       status
     };
     console.log(submittedAssignment);
+
     fetch("http://localhost:5000/submittedAssignments", {
       method: "POST",
       headers: {
