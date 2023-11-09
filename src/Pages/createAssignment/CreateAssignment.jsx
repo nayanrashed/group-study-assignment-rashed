@@ -54,7 +54,7 @@ const CreateAssignment = () => {
   };
   return (
     <div>
-      <div className="hero min-h-screen bg-base-200">
+      <div className="hero min-h-screen bg-base-200 pb-6 bg-gradient-to-r from-sky-100 to-teal-200">
         <div className="w-full md:w-2/3">
           <p className=" font-semibold text-2xl text-center mb-6 p-4 shadow-lg rounded-lg shadow-teal-100">
             Create an Assignment

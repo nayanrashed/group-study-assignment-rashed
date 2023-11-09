@@ -102,7 +102,7 @@ const allAssignments = () => {
               <option value="medium">Medium</option>
               <option value="hard">Hard</option>
             </select>
-            <button className="btn btn-sm ml-4">Submit</button>
+            <button className="btn btn-sm ml-4">Search</button>
           </div>
         </form>
         <h2 className="md:text-xl pr-4">Assignment Count: {assignments.length}</h2>

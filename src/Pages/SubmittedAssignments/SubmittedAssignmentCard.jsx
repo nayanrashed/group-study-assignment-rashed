@@ -12,6 +12,7 @@ const SubmittedAssignmentCard = ({ assignment }) => {
     pdfLink,
     marks,
     level,
+    status,
     submitDetails,
     submitterEmail,
     
@@ -35,6 +36,7 @@ const SubmittedAssignmentCard = ({ assignment }) => {
               <p> <span className="font-semibold">Total Marks:</span> {marks}</p>
               <p className="mb-3"> <span className="font-semibold">Difficulty Level:</span> {level}</p>
               <p className="mb-4"><span className="font-semibold">Submitted By:</span> {submitterEmail}</p>
+              <p className="mb-4"><span className="font-semibold">Status:</span>  {status}</p>
               <p> <span className="font-semibold">Comments: </span>{submitDetails}</p>
               <p></p>
             </div>

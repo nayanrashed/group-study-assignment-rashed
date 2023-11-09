@@ -67,7 +67,7 @@ const UpdateAssignment = () => {
   return (
     <div>
       <div>
-        <div className="hero min-h-screen bg-base-200">
+        <div className="hero min-h-screen pb-6 bg-gradient-to-r from-sky-100 to-teal-200">
           <div className="w-full md:w-3/4 lg:w-2/3">
             <p className="font-semibold text-2xl text-center p-4 shadow-lg rounded-xl mb-4 shadow-teal-50">
               Update Assignment

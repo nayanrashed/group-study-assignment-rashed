@@ -69,6 +69,7 @@ const NavBar = () => {
           </ul>
         </div>
         <Link to='/'><img className="w-12 h-12 mx-auto" src={logo} alt="" /></Link>
+        <p className="text-teal-400 font-bold text-2xl md:text-3xl">Grow</p>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal">{navLinks}</ul>
@@ -97,11 +98,11 @@ const NavBar = () => {
           <p className="hidden md:inline md:text-lg px-1"> {user?.email}</p>
         )} */}
         {user ? (
-          <button className="btn btn-sm" onClick={handleSignOut}>
+          <button className="btn btn-sm bg-teal-400" onClick={handleSignOut}>
             Sign Out
           </button>
         ) : (
-          <Link to="/login">Login</Link>
+          <Link to="/login" className="btn btn-sm bg-teal-400">Login</Link>
         )}
       </div>
     </div>

@@ -48,20 +48,21 @@ const GiveMark = () => {
                 confirmButtonText: "Ok",
               });
         }
+        navigate('/submittedAssignments')
     })
 
   };
   return (
-    <div className="border w-1/2 mx-auto">
-      <div>
-        <p className="text-center">Title: {title}</p>
+    <div className="border w-full rounded-lg md:w-2/3 lg:1/2 mx-auto mb-4 shadow-lg shadow-teal-100">
+      <div className="p-6">
+        <p className="text-center text-xl mb-2"><span className="font-semibold">Title:</span> {title}</p>
         <p className="text-center">
-          Assignment Link:
-          <a className="underline text-blue-500" href={pdfLink} target="_blank">
+          <span className="font-semibold">Assignment Link: </span>
+          <a className="underline italic text-blue-500" href={pdfLink} target="_blank">
             PDF Link
           </a>
         </p>
-        <p className="text-center">Submitted Note: {submitDetails}</p>
+        <p className="text-center"><span className="font-semibold">Submitted Note:</span> {submitDetails}</p>
       </div>
       <div>
         <form onSubmit={handleGiveMark} className="card-body border w-full">
