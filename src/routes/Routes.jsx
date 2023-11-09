@@ -32,7 +32,7 @@ const router = createBrowserRouter([
       {
         path: "/allAssignments",
         element: <AllAssignments></AllAssignments>,
-        loader: () => fetch("http://localhost:5000/assignments"),
+        loader: () => fetch("https://group-study-server-six.vercel.app/assignments"),
       },
       {
         path: "/login",
@@ -44,29 +44,49 @@ const router = createBrowserRouter([
       },
       {
         path: "/assignments/:id",
-        element: <PrivateRoute><AssignmentDetails></AssignmentDetails></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <AssignmentDetails></AssignmentDetails>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/assignments/${params.id}`),
+          fetch(`https://group-study-server-six.vercel.app/assignments/${params.id}`),
       },
       {
         path: "/updateAssignment/:id",
-        element: <PrivateRoute><UpdateAssignment></UpdateAssignment></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <UpdateAssignment></UpdateAssignment>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/assignments/${params.id}`),
+          fetch(`https://group-study-server-six.vercel.app/assignments/${params.id}`),
       },
       {
         path: "/submittedAssignments",
-        element: <PrivateRoute><SubmittedAssignments></SubmittedAssignments></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <SubmittedAssignments></SubmittedAssignments>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/myAssignments",
-        element: <PrivateRoute><MyAssignments></MyAssignments></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <MyAssignments></MyAssignments>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/giveMarks/:id",
-        element: <PrivateRoute><GiveMark></GiveMark></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <GiveMark></GiveMark>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/submittedAssignments/${params.id}`),
+          fetch(`https://group-study-server-six.vercel.app/submittedAssignments/${params.id}`),
       },
     ],
   },

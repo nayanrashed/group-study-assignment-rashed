@@ -44,7 +44,7 @@ const AssignmentDetails = () => {
     };
     console.log(submittedAssignment);
 
-    fetch("http://localhost:5000/submittedAssignments", {
+    fetch("https://group-study-server-six.vercel.app/submittedAssignments", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -65,13 +65,13 @@ const AssignmentDetails = () => {
 
   return (
     <div>
-      <div className="card card-compact w-3/4 h-[100vh] mx-auto bg-base-100 shadow-xl">
+      <div className="card card-compact w-full lg:w-3/4 lg:h-[100vh] mx-auto bg-base-100 shadow-xl">
         <figure>
           <img src={imageURL} alt="thumbnail" />
         </figure>
         <div className="card-body">
           <h2 className="card-title">{title}</h2>
-          <div className="flex">
+          <div className="md:flex">
             <p className="flex-1">
               Difficulty Level: <span className="font-bold">{level}</span>
             </p>
@@ -79,7 +79,7 @@ const AssignmentDetails = () => {
               Category: <span className="font-bold">{category}</span>
             </p>
           </div>
-          <div className="flex">
+          <div className="md:flex">
             <p className="flex-1">Total Marks: {marks}</p>
             <p className="flex-1">Submission Date: {date}</p>
           </div>

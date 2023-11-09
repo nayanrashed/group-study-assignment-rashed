@@ -14,33 +14,33 @@ const MyAssignmentCard = ({ myAssignment }) => {
   } = myAssignment;
   return (
     <div>
-      <div className="card card-side bg-base-100 shadow-xl mb-4">
-        <figure className="w-1/3">
-          <img src={imageURL} alt="thumbnail" />
+      <div className="md:flex bg-base-100 shadow-xl shadow-teal-100 mb-4">
+        <figure className=" w-full md:w-2/5">
+          <img className="w-full h-full" src={imageURL} alt="thumbnail" />
         </figure>
-        <div className="card-body w-2/3">
+        <div className="card-body w-full md:w-3/5">
           <h2 className="card-title">{title}</h2>
           <div>
             <p>
               Difficulty Level: <span className="font-bold">{level}</span>{" "}
             </p>
-            <p>Status: {status}</p>
+            <p>Status: <span className="font-bold">{status}</span></p>
             <p>
               Submitted Document:
               <a
-                className="underline text-blue-500"
+                className="underline italic text-blue-500"
                 href={pdfLink}
                 target="_blank"
-              >
-                Document Link
+              > 
+                PDF Link
               </a>
             </p>
           </div>
           <div className="flex justify-between">
-            <p>Obtained Marks: {givenMarks}</p>
-            <p>Total Marks: {marks}</p>
+            <p>Obtained Marks: <span className="font-semibold">{givenMarks}</span></p>
+            <p>Total Marks: <span className="font-semibold">{marks}</span></p>
           </div>
-          <p>Examiners Comments: {feedback}</p>
+          <p><span className="font-semibold">Examiners Comments:</span> {feedback}</p>
           <div className="card-actions justify-end"></div>
         </div>
       </div>

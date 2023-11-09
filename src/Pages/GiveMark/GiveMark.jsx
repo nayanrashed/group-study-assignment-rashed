@@ -30,7 +30,7 @@ const GiveMark = () => {
     const feedback = form.feedback.value;
     // console.log(givenMarks,feedback, examinerEmail); 
     const updatedSubmittedAssignment = {givenMarks,feedback,examinerEmail,status} 
-    fetch(`http://localhost:5000/submittedAssignments/${_id}`,{
+    fetch(`https://group-study-server-six.vercel.app/submittedAssignments/${_id}`,{
         method:"PUT",
         headers:{
             "content-type":"application/json",

@@ -32,7 +32,7 @@ const allAssignments = () => {
           confirmButtonText: "Yes, delete it!",
         }).then((result) => {
           if (result.isConfirmed) {
-            fetch(`http://localhost:5000/assignments/${_id}`, {
+            fetch(`https://group-study-server-six.vercel.app/assignments/${_id}`, {
               method: "DELETE",
             })
               .then((res) => res.json())
@@ -88,12 +88,12 @@ const allAssignments = () => {
   }
   return (
     <div>
-      <div className="flex justify-between">
+      <div className="flex justify-between mb-6 shadow shadow-teal-50 py-2 rounded-md">
         <form onSubmit={handleFilter}>
-          <div className=" flex">
+          <div className="flex items-center">
             <label className="label">
               <span className="label-text px-4">
-                Filter by Difficulty Level
+                Difficulty Level
               </span>
             </label>
             <select className="border rounded-lg" name="level">
@@ -105,7 +105,7 @@ const allAssignments = () => {
             <button className="btn btn-sm ml-4">Submit</button>
           </div>
         </form>
-        <h2 className="text-xl pr-4">All Assignment: {assignments.length}</h2>
+        <h2 className="md:text-xl pr-4">Assignment Count: {assignments.length}</h2>
       </div>
       <div>
         {assignments.map((assignment) => (

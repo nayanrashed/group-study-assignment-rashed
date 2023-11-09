@@ -44,7 +44,7 @@ const UpdateAssignment = () => {
     };
     console.log(updatedAssignment);
     //sending data to update
-    fetch(`http://localhost:5000/assignments/${_id}`,{
+    fetch(`https://group-study-server-six.vercel.app/assignments/${_id}`,{
         method:"PUT",
         headers:{
             "content-type":"application/json",
@@ -68,8 +68,8 @@ const UpdateAssignment = () => {
     <div>
       <div>
         <div className="hero min-h-screen bg-base-200">
-          <div className="border w-2/3">
-            <p className=" font-semibold text-2xl text-center p-4">
+          <div className="w-full md:w-3/4 lg:w-2/3">
+            <p className="font-semibold text-2xl text-center p-4 shadow-lg rounded-xl mb-4 shadow-teal-50">
               Update Assignment
             </p>
             <div className="card shadow-2xl bg-base-100">
@@ -166,7 +166,7 @@ const UpdateAssignment = () => {
                 </div>
 
                 <div className="form-control mt-6">
-                  <button className="btn btn-primary">Create Assignment</button>
+                  <button className="btn btn-primary">Update Assignment</button>
                 </div>
               </form>
             </div>

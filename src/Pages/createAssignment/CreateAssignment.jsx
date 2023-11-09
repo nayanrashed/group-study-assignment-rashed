@@ -31,7 +31,7 @@ const CreateAssignment = () => {
       creatorEmail,
     };
     console.log(newAssignment);
-    fetch("http://localhost:5000/assignments", {
+    fetch("https://group-study-server-six.vercel.app/assignments", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -40,7 +40,7 @@ const CreateAssignment = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         e.target.reset();
         if (data.insertedId) {
           Swal.fire({
@@ -55,14 +55,14 @@ const CreateAssignment = () => {
   return (
     <div>
       <div className="hero min-h-screen bg-base-200">
-        <div className="border w-2/3">
-          <p className=" font-semibold text-2xl text-center p-4">
+        <div className="w-full md:w-2/3">
+          <p className=" font-semibold text-2xl text-center mb-6 p-4 shadow-lg rounded-lg shadow-teal-100">
             Create an Assignment
           </p>
           <div className="card shadow-2xl bg-base-100">
             <form
               onSubmit={handleCreateAssignment}
-              className="card-body border w-full"
+              className="card-body w-full"
             >
               <div className="form-control">
                 <label className="label">
@@ -76,7 +76,7 @@ const CreateAssignment = () => {
                   required
                 />
               </div>
-              <div className="flex gap-6">
+              <div className="md:flex gap-6">
                 <div className="form-control flex-1">
                   <label className="label">
                     <span className="label-text">Marks</span>
@@ -100,7 +100,7 @@ const CreateAssignment = () => {
                   </select>
                 </div>
               </div>
-              <div className="flex gap-6">
+              <div className="md:flex gap-6">
                 <div className="form-control flex-1">
                   <label className="label">
                     <span className="label-text">Due Date</span>
