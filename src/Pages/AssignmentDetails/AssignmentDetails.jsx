@@ -120,7 +120,7 @@ const AssignmentDetails = () => {
                     name="submitDetails"
                   ></textarea>
                 </div>
-                <p>Pres ESC to cancel</p>
+                <p className="mt-4">Pres <span className="font-semibold">ESC</span> to cancel</p>
                 <div className="modal-action">
                   <div method="dialog w-full">
                     {/* if there is a button in form, it will close the modal */}
