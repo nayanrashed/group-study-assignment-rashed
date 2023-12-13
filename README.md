@@ -9,4 +9,5 @@
 
 # Project Link:
 - Live Link ![Group Study](https://group-study-rashed.web.app/)
+- https://spiffy-gelato-3ac630.netlify.app/
 
