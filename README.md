@@ -6,6 +6,7 @@
 - Hosting in Vercel: For server side we use vercel for hosting.
 - Using of Framer Motion: Framer motion was used for animation.
 
+
 # Project Link:
-- https://group-study-rashed.web.app/
+- Live Link ![Group Study](https://group-study-rashed.web.app/)
 
